@@ -7,7 +7,7 @@ const BookSeeder = require('../seeders/books_seeder');
 books.get('/', (req, res) => {
     db.Book.find()
         .then(books => {
-            res.json(books);
+            res.status(200).json(books);
         })
         .catch(err => {
             // console.log(err);
@@ -21,7 +21,7 @@ books.get('/', (req, res) => {
 books.get('/:id', (req, res) => {
     db.Book.findById(req.params.id)
         .then(book => {
-            res.send(book);
+            res.status(200).json(book);
         })
         .catch(err => {
             // console.log(err);
