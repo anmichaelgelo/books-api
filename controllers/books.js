@@ -7,7 +7,8 @@ const BookSeeder = require('../seeders/books_seeder');
 books.get('/', (req, res) => {
     Book.find()
         .then(books => {
-            res.send(books);
+            console.log(books);
+            res.status(200).json(books);
         })
         .catch(err => {
             res.status(400).json({
@@ -33,14 +34,14 @@ books.get('/seed', (req, res) => {
         .then(() => {
             res.status(200).json({
                 is_success: true,
-                message: 'Seed successful'
+                message: "Seed successful"
             });
         })
         .catch(err => {
             res.status(404).json({
                 err: err
-            })
-        })
+            });
+        });
 });
 
 module.exports = books;
