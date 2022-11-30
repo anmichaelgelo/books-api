@@ -3,6 +3,23 @@ const books = express.Router();
 const db = require('../models');
 const BookSeeder = require('../seeders/books_seeder');
 
+// SEED
+books.get('/seed', (req, res) => {
+    // res.json(BookSeeder);
+    db.Book.insertMany(BookSeeder)
+        .then(() => {
+            res.status(200).json({
+                message: 'Seed successful'
+            });
+        })
+        .catch(err => {
+            // console.log(err);
+            res.status(400).json({
+                message: "Failed to seed"
+            });
+        })
+});
+
 // INDEX
 books.get('/', (req, res) => {
     db.Book.find()
@@ -76,22 +93,6 @@ books.delete('/:id', (req, res) => {
                 message: "Failed to delete"
             })
         });
-});
-
-// SEED
-books.get('/seed', (req, res) => {
-    db.Book.insertMany(BookSeeder)
-        .then(() => {
-            res.status(200).json({
-                message: 'Seed successful'
-            });
-        })
-        .catch(err => {
-            // console.log(err);
-            res.status(400).json({
-                message: "Failed to seed"
-            });
-        })
 });
 
 module.exports = books;
