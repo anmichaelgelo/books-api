@@ -4,14 +4,19 @@ const app = express();
 // Configuration
 require('dotenv').config();
 const PORT = process.env.PORT;
-const MONGODB = process.env.MONGODB_URI;
 
 // Middleware
 app.use(express.json());
 
 // Routes
+app.use('/books', require('./controllers/books.js'));
+
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.json('Hello World!');
+});
+
+app.get('*', (req, res) => {
+    res.status(404).json('404 | Page not found');
 });
 
 app.listen(PORT, () => {
