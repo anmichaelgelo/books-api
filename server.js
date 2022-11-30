@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 // Configuration
@@ -6,6 +7,7 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Routes
