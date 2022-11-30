@@ -1,4 +1,3 @@
-const db = require('../models');
 const Seed = [{
     "title": "The Shinobi Initiative",
     "description": "The reality-bending adventures of a clandestine service agency in the year 2166",
@@ -28,10 +27,4 @@ const Seed = [{
     "imageURL": "https://imgur.com/qYLKtPH.jpeg"
 }];
 
-db.Book.insertMany(Seed).then(() => {
-    console.log('Seed successful!');
-    
-    process.exit();
-}).catch(err => {
-    console.log(err);
-});
+module.exports = Seed

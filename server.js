@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 app.use(express.json());
 
 // Routes
-app.use('/books', require('./controllers/books.js'));
+app.use('/books', require('./controllers/books'));
 
 app.get('/', (req, res) => {
     res.json('Hello World!');
